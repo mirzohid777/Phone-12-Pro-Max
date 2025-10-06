@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styele.css">
+</head>
+
+<body>
+
+    <div class="school-header">
+        <div class="header-left">
+            <div class="school-logo">204</div>
+            <div class="school-info">
+                <h1>204 MAKTAB 10 E</h1>
+                <p>Bolalar Ro'yxati</p>
+            </div>
+        </div>
+
+
+        <nav class="header-nav">
+            <a href="./index.html" class="nav-link" id="link-students" data-translate="linkStudents">Sinflar</a>
+            <a href="./main.html" class="nav-link" id="link-students" data-translate="linkStudents">O'quvchilar</a>
+            <a href="./today.html" class="nav-link" id="link-today" data-translate="linkToday">Bugun</a>
+            <a href="./fanlar.html" class="nav-link" id="link-fanlar" data-translate="linkFanlar">Fanlar</a>
+            <a href="./arry.html" class="nav-link" id="link-yoqlama" data-translate="linkYoqlama">Yoqlama</a>
+            <a href="./sprabka..html" class="nav-link" id="link-fanlar" data-translate="linkFanlar">Spravka olish</a>
+        </nav>
+
+        <div class="header-right">
+            <select class="lang-select">
+                <option value="uz">O'zbek</option>
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <button class="menu-btn" onclick="openMenu()">☰</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <div class="sidebar" id="mySidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">204 Maktab</div>
+            <button class="closebtn" onclick="closeMenu()">×</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="./index.html" class="sidebar-link">
+                <span class="link-icon">🏫</span>
+                <span data-uz="Sinflar" data-ru="Классы" data-en="Classes">Sinflar</span>
+            </a>
+            <a href="./main.html" class="sidebar-link">
+                <span class="link-icon">👥</span>
+                <span data-uz="O'quvchilar" data-ru="Ученики" data-en="Students">O'quvchilar</span>
+            </a>
+            <a href="./today.html" class="sidebar-link">
+                <span class="link-icon">📅</span>
+                <span data-uz="Bugun" data-ru="Сегодня" data-en="Today">Bugun</span>
+            </a>
+            <a href="./fanlar.html" class="sidebar-link">
+                <span class="link-icon">📚</span>
+                <span data-uz="Fanlar" data-ru="Предметы" data-en="Subjects">Fanlar</span>
+            </a>
+            <a href="./arry.html" class="sidebar-link">
+                <span class="link-icon">✓</span>
+                <span data-uz="Yo'qlama" data-ru="Перекличка" data-en="Attendance">Yo'qlama</span>
+            </a>
+            <a href="./sprabka..html" class="sidebar-link">
+                <span class="link-icon">📄</span>
+                <span data-uz="Spravka olish" data-ru="Получить справку" data-en="Get Certificate">Spravka olish</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-lang">
+            <div class="sidebar-lang-title" data-uz="Til tanlash" data-ru="Выбрать язык" data-en="Select Language">Til
+                tanlash</div>
+            <div class="lang-buttons">
+                <button class="lang-btn active" onclick="changeLanguage('uz')" data-lang="uz">O'zb</button>
+                <button class="lang-btn" onclick="changeLanguage('ru')" data-lang="ru">Рус</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">Eng</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="date-info">
+        <div class="day" id="currentDay">Seshanba</div>
+        <div class="date" id="currentDate">30 Sentyabr, 2025</div>
+    </div>
+
+    <div class="main-content">
+        <div class="schedule-container">
+            <h2 class="container-header">
+                📚 Bugungi Darslar
+            </h2>
+            <div id="lessonsList"></div>
+        </div>
+
+        <div>
+            <div class="schedule-container" style="margin-bottom: 24px;">
+                <h2 class="container-header">
+                    👮 Bugungi Navbatchi
+                </h2>
+                <div class="duty-card">
+                    <div class="duty-icon" id="dutyIcon">S</div>
+                    <div class="duty-title">Sinf Navbatchisi</div>
+                    <div class="duty-name" id="dutyName">Sherzod Abdullayev</div>
+                    <div class="duty-subtitle">10-E sinf</div>
+                </div>
+            </div>
+
+            <div class="schedule-container">
+                <h2 class="container-header">
+                    📊 Statistika
+                </h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalLessons">0</div>
+                        <div class="stat-label">Jami darslar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="remainingLessons">0</div>
+                        <div class="stat-label">Qolgan darslar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="startTime">--:--</div>
+                        <div class="stat-label">Boshlanish</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="endTime">--:--</div>
+                        <div class="stat-label">Tugash</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        // ===================================
+        // DROB DOWN 
+        // ====================================
+        let currentLang = 'uz';
+
+        function openMenu() {
+            document.getElementById("mySidebar").classList.add("active");
+            document.getElementById("overlay").classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeMenu() {
+            document.getElementById("mySidebar").classList.remove("active");
+            document.getElementById("overlay").classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+
+            document.getElementById('desktopLang').value = lang;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('[data-' + lang + ']').forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (element.tagName === 'SELECT' || element.tagName === 'OPTION') {
+                    element.textContent = text;
+                } else {
+                    element.textContent = text;
+                }
+            });
+
+            const subtitles = {
+                uz: "Bolalar Ro'yxati",
+                ru: "Список учеников",
+                en: "Student List"
+            };
+            document.getElementById('subtitle').textContent = subtitles[lang];
+
+            if (typeof (Storage) !== "undefined") {
+                localStorage.setItem('preferredLang', lang);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof (Storage) !== "undefined") {
+                const savedLang = localStorage.getItem('preferredLang');
+                if (savedLang) {
+                    changeLanguage(savedLang);
+                }
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+        // ===================================
+        // BUGUNGI START
+        // ====================================
+
+        const weekSchedule = {
+            'Dushanba': [
+                { time: '08:30 - 09:15', subject: 'Matematika', teacher: 'Rahmatulloh Boymirzaev', room: '301' },
+                { time: '09:30 - 10:15', subject: 'Ona tili', teacher: 'Navro\'z Alisherov', room: '201' },
+                { time: '10:30 - 11:15', subject: 'Kimyo', teacher: 'Davlatova Laziza', room: '402' },
+                { time: '11:30 - 12:15', subject: 'Ingliz tili', teacher: 'Jamshid Isomiddinov', room: '105' },
+                { time: '12:30 - 13:15', subject: 'Informatika', teacher: 'Sherzod Abdullayev', room: '109' },
+                { time: '13:30 - 14:15', subject: 'Huquq', teacher: 'Navro\'z Alisherov', room: '203' }
+            ],
+            'Seshanba': [
+                { time: '08:30 - 09:15', subject: 'Tarix', teacher: 'Mig\'olib Gofurov', room: '303' },
+                { time: '09:30 - 10:15', subject: 'Biologiya', teacher: 'Nozanin Ismoilova', room: '304' },
+                { time: '10:30 - 11:15', subject: 'Adabiyot', teacher: 'Fuzeil Arsenov', room: '202' },
+                { time: '11:30 - 12:15', subject: 'Fizika', teacher: 'Sherzod Abdullayev', room: '205' },
+                { time: '12:30 - 13:15', subject: 'Jismoniy tarbiya', teacher: 'Rahmatulloh Boymirzaev', room: 'Stadion' },
+                { time: '13:30 - 14:15', subject: 'Iqtisod', teacher: 'Mig\'olib Gofurov', room: '204' }
+            ],
+            'Chorshanba': [
+                { time: '08:30 - 09:15', subject: 'Ona tili', teacher: 'Navro\'z Alisherov', room: '201' },
+                { time: '09:30 - 10:15', subject: 'Ingliz tili', teacher: 'Jamshid Isomiddinov', room: '105' },
+                { time: '10:30 - 11:15', subject: 'Matematika', teacher: 'Rahmatulloh Boymirzaev', room: '301' },
+                { time: '11:30 - 12:15', subject: 'Geografiya', teacher: 'Temur Jalolov', room: '306' },
+                { time: '12:30 - 13:15', subject: 'Chizmachilik', teacher: 'Davlatova Laziza', room: '408' },
+                { time: '13:30 - 14:15', subject: 'San\'at', teacher: 'Nozanin Ismoilova', room: 'Art Studio' }
+            ],
+            'Payshanba': [
+                { time: '08:30 - 09:15', subject: 'Fizika', teacher: 'Sherzod Abdullayev', room: '205' },
+                { time: '09:30 - 10:15', subject: 'Adabiyot', teacher: 'Fuzeil Arsenov', room: '202' },
+                { time: '10:30 - 11:15', subject: 'Tarix', teacher: 'Mig\'olib Gofurov', room: '303' },
+                { time: '11:30 - 12:15', subject: 'Informatika', teacher: 'Sherzod Abdullayev', room: '109' },
+                { time: '12:30 - 13:15', subject: 'Biologiya', teacher: 'Nozanin Ismoilova', room: '304' },
+                { time: '13:30 - 14:15', subject: 'Texnologiya', teacher: 'Fuzeil Arsenov', room: 'Workshop' }
+            ],
+            'Juma': [
+                { time: '08:30 - 09:15', subject: 'Ingliz tili', teacher: 'Jamshid Isomiddinov', room: '105' },
+                { time: '09:30 - 10:15', subject: 'Matematika', teacher: 'Rahmatulloh Boymirzaev', room: '301' },
+                { time: '10:30 - 11:15', subject: 'Ona tili', teacher: 'Navro\'z Alisherov', room: '201' },
+                { time: '11:30 - 12:15', subject: 'Kimyo', teacher: 'Davlatova Laziza', room: '402' },
+                { time: '12:30 - 13:15', subject: 'Geografiya', teacher: 'Temur Jalolov', room: '306' },
+                { time: '13:30 - 14:15', subject: 'Jismoniy tarbiya', teacher: 'Rahmatulloh Boymirzaev', room: 'Stadion' }
+            ],
+            'Shanba': [
+                { time: '08:30 - 09:15', subject: 'Ingliz tili', teacher: 'Jamshid Isomiddinov', room: '105' },
+                { time: '09:30 - 10:15', subject: 'Matematika', teacher: 'Rahmatulloh Boymirzaev', room: '301' },
+                { time: '10:30 - 11:15', subject: 'Ona tili', teacher: 'Navro\'z Alisherov', room: '201' },
+                { time: '11:30 - 12:15', subject: 'Kimyo', teacher: 'Davlatova Laziza', room: '402' },
+                { time: '12:30 - 13:15', subject: 'Geografiya', teacher: 'Temur Jalolov', room: '306' },
+                { time: '13:30 - 14:15', subject: 'Jismoniy tarbiya', teacher: 'Rahmatulloh Boymirzaev', room: 'Stadion' }
+            ],
+            'Yakshanba': [
+                { message: 'Yakshanba kuni dam oling 😊' }
+            ]
+        };
+
+        const dutySchedule = [
+            { name: 'Sherzod Abdullayev', day: 'Dushanba' },
+            { name: 'Navro\'z Alisherov', day: 'Seshanba' },
+            { name: 'Fuzeil Arsenov', day: 'Chorshanba' },
+            { name: 'Rahmatulloh Boymirzaev', day: 'Payshanba' },
+            { name: 'Davlatova Laziza', day: 'Juma' }
+
+        ];
+
+        const days = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
+        const months = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentyabr', 'Oktyabr', 'Noyabr', 'Dekabr'];
+
+        function getCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            return hours * 60 + minutes;
+        }
+
+        function parseTime(timeStr) {
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+
+        function isCurrentLesson(timeRange) {
+            const [start, end] = timeRange.split(' - ');
+            const currentTime = getCurrentTime();
+            const startTime = parseTime(start);
+            const endTime = parseTime(end);
+            return currentTime >= startTime && currentTime <= endTime;
+        }
+
+        function renderSchedule() {
+            const now = new Date();
+            const dayName = days[now.getDay()];
+            const date = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            document.getElementById('currentDay').textContent = dayName;
+            document.getElementById('currentDate').textContent = `${date} ${month}, ${year}`;
+
+            const todayLessons = weekSchedule[dayName] || [];
+            const lessonsListEl = document.getElementById('lessonsList');
+
+            if (todayLessons.length === 0) {
+                lessonsListEl.innerHTML = `
+                    <div class="no-lessons">
+                        <div class="no-lessons-icon">🎉</div>
+                        <div class="no-lessons-text">Bugun dars yo'q!</div>
+                    </div>
+                `;
+                document.getElementById('totalLessons').textContent = '0';
+                document.getElementById('remainingLessons').textContent = '0';
+                document.getElementById('startTime').textContent = '--:--';
+                document.getElementById('endTime').textContent = '--:--';
+            } else {
+                const currentTime = getCurrentTime();
+                let remainingCount = 0;
+
+                lessonsListEl.innerHTML = todayLessons.map((lesson, index) => {
+                    const isCurrent = isCurrentLesson(lesson.time);
+                    const lessonEndTime = parseTime(lesson.time.split(' - ')[1]);
+
+                    if (currentTime < lessonEndTime) {
+                        remainingCount++;
+                    }
+
+                    return `
+                        <div class="lesson-card ${isCurrent ? 'current' : ''}">
+                            <div>
+                                <span class="lesson-time">${lesson.time}</span>
+                                ${isCurrent ? '<span class="current-badge">Hozir</span>' : ''}
+                            </div>
+                            <div class="lesson-name">${lesson.subject}</div>
+                            <div class="lesson-details">
+                                <div class="lesson-detail">
+                                    <div class="lesson-detail-icon">👨‍🏫</div>
+                                    <span>${lesson.teacher}</span>
+                                </div>
+                                <div class="lesson-detail">
+                                    <div class="lesson-detail-icon">🚪</div>
+                                    <span>Xona ${lesson.room}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                document.getElementById('totalLessons').textContent = todayLessons.length;
+                document.getElementById('remainingLessons').textContent = remainingCount;
+                document.getElementById('startTime').textContent = todayLessons[0].time.split(' - ')[0];
+                document.getElementById('endTime').textContent = todayLessons[todayLessons.length - 1].time.split(' - ')[1];
+            }
+
+            const dutyToday = dutySchedule.find(d => d.day === dayName);
+            if (dutyToday) {
+                document.getElementById('dutyName').textContent = dutyToday.name;
+                document.getElementById('dutyIcon').textContent = dutyToday.name.charAt(0);
+            } else {
+                document.getElementById('dutyName').textContent = 'Navbatchi yo\'q';
+                document.getElementById('dutyIcon').textContent = '🏖️';
+            }
+        }
+
+        renderSchedule();
+        setInterval(renderSchedule, 60000);
+    </script>
+</body>
+
+</html>

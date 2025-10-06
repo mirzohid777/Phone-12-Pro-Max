@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styele.css">
+</head>
+
+<body>
+
+
+    <div class="school-header">
+        <div class="header-left">
+            <div class="school-logo">204</div>
+            <div class="school-info">
+                <h1>204 MAKTAB 10 E</h1>
+                <p>Bolalar Ro'yxati</p>
+            </div>
+        </div>
+
+        <nav class="header-nav">
+            <a href="./index.html" class="nav-link" id="link-students" data-translate="linkStudents">Sinflar</a>
+            <a href="./main.html" class="nav-link" id="link-students" data-translate="linkStudents">O'quvchilar</a>
+            <a href="./today.html" class="nav-link" id="link-today" data-translate="linkToday">Bugun</a>
+            <a href="./fanlar.html" class="nav-link" id="link-fanlar" data-translate="linkFanlar">Fanlar</a>
+            <a href="./arry.html" class="nav-link" id="link-yoqlama" data-translate="linkYoqlama">Yoqlama</a>
+            <a href="./sprabka..html" class="nav-link" id="link-fanlar" data-translate="linkFanlar">Spravka olish</a>
+        </nav>
+        <div class="header-right">
+            <select class="lang-select" id="langSelect">
+                <option value="uz">O'zbek</option>
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <button class="menu-btn" onclick="openMenu()">☰</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <div class="sidebar" id="mySidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">204 Maktab</div>
+            <button class="closebtn" onclick="closeMenu()">×</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="./index.html" class="sidebar-link">
+                <span class="link-icon">🏫</span>
+                <span data-uz="Sinflar" data-ru="Классы" data-en="Classes">Sinflar</span>
+            </a>
+            <a href="./main.html" class="sidebar-link">
+                <span class="link-icon">👥</span>
+                <span data-uz="O'quvchilar" data-ru="Ученики" data-en="Students">O'quvchilar</span>
+            </a>
+            <a href="./today.html" class="sidebar-link">
+                <span class="link-icon">📅</span>
+                <span data-uz="Bugun" data-ru="Сегодня" data-en="Today">Bugun</span>
+            </a>
+            <a href="./fanlar.html" class="sidebar-link">
+                <span class="link-icon">📚</span>
+                <span data-uz="Fanlar" data-ru="Предметы" data-en="Subjects">Fanlar</span>
+            </a>
+            <a href="./arry.html" class="sidebar-link">
+                <span class="link-icon">✓</span>
+                <span data-uz="Yo'qlama" data-ru="Перекличка" data-en="Attendance">Yo'qlama</span>
+            </a>
+            <a href="./sprabka..html" class="sidebar-link">
+                <span class="link-icon">📄</span>
+                <span data-uz="Spravka olish" data-ru="Получить справку" data-en="Get Certificate">Spravka olish</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-lang">
+            <div class="sidebar-lang-title" data-uz="Til tanlash" data-ru="Выбрать язык" data-en="Select Language">Til
+                tanlash</div>
+            <div class="lang-buttons">
+                <button class="lang-btn active" onclick="changeLanguage('uz')" data-lang="uz">O'zb</button>
+                <button class="lang-btn" onclick="changeLanguage('ru')" data-lang="ru">Рус</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">Eng</button>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <div class="classes-grid" id="classesGrid"></div>
+
+
+
+
+
+
+    <script>
+        // ===================================
+        // DROB DOWN 
+        // ====================================
+        let currentLang = 'uz';
+
+        function openMenu() {
+            document.getElementById("mySidebar").classList.add("active");
+            document.getElementById("overlay").classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeMenu() {
+            document.getElementById("mySidebar").classList.remove("active");
+            document.getElementById("overlay").classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+
+            document.getElementById('desktopLang').value = lang;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('[data-' + lang + ']').forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (element.tagName === 'SELECT' || element.tagName === 'OPTION') {
+                    element.textContent = text;
+                } else {
+                    element.textContent = text;
+                }
+            });
+
+            const subtitles = {
+                uz: "Bolalar Ro'yxati",
+                ru: "Список учеников",
+                en: "Student List"
+            };
+            document.getElementById('subtitle').textContent = subtitles[lang];
+
+            if (typeof (Storage) !== "undefined") {
+                localStorage.setItem('preferredLang', lang);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof (Storage) !== "undefined") {
+                const savedLang = localStorage.getItem('preferredLang');
+                if (savedLang) {
+                    changeLanguage(savedLang);
+                }
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+        // ===================================
+        // SINFLAR START
+        // ====================================
+
+        const sections = ['A', 'B', 'D', 'G', 'E'];
+        const sectionClasses = {
+            'A': 'section-a',
+            'B': 'section-b',
+            'D': 'section-d',
+            'G': 'section-g',
+            'E': 'section-e'
+        };
+
+        const classesGrid = document.getElementById('classesGrid');
+        const selectedInfo = document.getElementById('selectedInfo');
+        const selectedText = document.getElementById('selectedText');
+
+        for (let i = 1; i <= 11; i++) {
+            const classCard = document.createElement('div');
+            classCard.className = 'class-card';
+
+            const classHeader = document.createElement('div');
+            classHeader.className = 'class-header';
+            classHeader.innerHTML = `<div class="class-number">${i}-sinf</div>`;
+
+            const sectionsDiv = document.createElement('div');
+            sectionsDiv.className = 'sections';
+
+            sections.forEach(section => {
+                const btn = document.createElement('button');
+                btn.className = `section-btn ${sectionClasses[section]}`;
+                btn.textContent = section;
+                btn.onclick = () => selectClass(i, section);
+                sectionsDiv.appendChild(btn);
+            });
+
+            classCard.appendChild(classHeader);
+            classCard.appendChild(sectionsDiv);
+            classesGrid.appendChild(classCard);
+        }
+
+        function selectClass(classNum, section) {
+            selectedText.textContent = `${classNum}-sinf ${section} guruhi`;
+            selectedInfo.classList.add('show');
+
+            setTimeout(() => {
+                selectedInfo.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

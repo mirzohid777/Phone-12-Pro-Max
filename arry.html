@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styele.css">
+</head>
+
+<body>
+
+
+    <div class="school-header">
+        <div class="header-left">
+            <div class="school-logo">204</div>
+            <div class="school-info">
+                <h1>204 MAKTAB 10 E</h1>
+                <p>Bolalar Ro'yxati</p>
+            </div>
+        </div>
+
+
+        <nav class="header-nav">
+            <a href="./index.html" class="nav-link" id="link-students" data-translate="linkStudents">Sinflar</a>
+            <a href="./main.html" class="nav-link" id="link-students" data-translate="linkStudents">O'quvchilar</a>
+            <a href="./today.html" class="nav-link" id="link-today" data-translate="linkToday">Bugun</a>
+            <a href="./fanlar.html" class="nav-link" id="link-fanlar" data-translate="linkFanlar">Fanlar</a>
+            <a href="./arry.html" class="nav-link" id="link-yoqlama" data-translate="linkYoqlama">Yoqlama</a>
+            <a href="./sprabka..html" class="nav-link" id="link-fanlar" data-translate="linkFanlar">Spravka olish</a>
+        </nav>
+        <div class="header-right">
+            <select class="lang-select">
+                <option value="uz">O'zbek</option>
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <button class="menu-btn" onclick="openMenu()">☰</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <div class="sidebar" id="mySidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">204 Maktab</div>
+            <button class="closebtn" onclick="closeMenu()">×</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="./index.html" class="sidebar-link">
+                <span class="link-icon">🏫</span>
+                <span data-uz="Sinflar" data-ru="Классы" data-en="Classes">Sinflar</span>
+            </a>
+            <a href="./main.html" class="sidebar-link">
+                <span class="link-icon">👥</span>
+                <span data-uz="O'quvchilar" data-ru="Ученики" data-en="Students">O'quvchilar</span>
+            </a>
+            <a href="./today.html" class="sidebar-link">
+                <span class="link-icon">📅</span>
+                <span data-uz="Bugun" data-ru="Сегодня" data-en="Today">Bugun</span>
+            </a>
+            <a href="./fanlar.html" class="sidebar-link">
+                <span class="link-icon">📚</span>
+                <span data-uz="Fanlar" data-ru="Предметы" data-en="Subjects">Fanlar</span>
+            </a>
+            <a href="./arry.html" class="sidebar-link">
+                <span class="link-icon">✓</span>
+                <span data-uz="Yo'qlama" data-ru="Перекличка" data-en="Attendance">Yo'qlama</span>
+            </a>
+            <a href="./sprabka..html" class="sidebar-link">
+                <span class="link-icon">📄</span>
+                <span data-uz="Spravka olish" data-ru="Получить справку" data-en="Get Certificate">Spravka olish</span>
+            </a>
+        </nav>
+
+
+        <div class="sidebar-lang">
+            <div class="sidebar-lang-title" data-uz="Til tanlash" data-ru="Выбрать язык" data-en="Select Language">Til
+                tanlash</div>
+            <div class="lang-buttons">
+                <button class="lang-btn active" onclick="changeLanguage('uz')" data-lang="uz">O'zb</button>
+                <button class="lang-btn" onclick="changeLanguage('ru')" data-lang="ru">Рус</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">Eng</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+    <div class="main-content">
+        <div class="container">
+            <div class="container-header">
+                <span>📋 Yo'qlama</span>
+                <span class="date-badge" id="currentDate"></span>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="O'quvchi ismini qidirish...">
+            </div>
+
+            <div class="student-grid" id="studentsList"></div>
+        </div>
+
+        <div>
+            <div class="container" style="margin-bottom: 24px;">
+                <div class="container-header">
+                    📊 Statistika
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-card total-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number" id="totalCount">16</div>
+                        <div class="stat-label">Jami O'quvchilar</div>
+                    </div>
+
+                    <div class="stat-card absent-card-new">
+                        <div class="stat-icon">📄</div>
+                        <div class="stat-number" id="absentCount">0</div>
+                        <div class="stat-label">Spraokasi borlar</div>
+                        <div class="percentage" id="absentPercent">0%</div>
+                    </div>
+
+                    <div class="stat-card present-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-number" id="presentCount">0</div>
+                        <div class="stat-label">Kelganlar</div>
+                        <div class="percentage" id="presentPercent">0%</div>
+                    </div>
+
+                    <div class="stat-card absent-card">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-number" id="absentCount">0</div>
+                        <div class="stat-label">Kelmaganlar</div>
+                        <div class="percentage" id="absentPercent">0%</div>
+                    </div>
+
+
+                </div>
+
+                <div class="students-list" id="absentList" style="display: none;">
+                    <div class="list-title">Kelmaganlar ro'yxati:</div>
+                    <div id="absentNames"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="markAllPresent()">Barchasini belgilash</button>
+                    <button class="btn-secondary" onclick="resetAll()">Tozalash</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // ===================================
+        // DROB DOWN 
+        // ====================================
+        let currentLang = 'uz';
+
+        function openMenu() {
+            document.getElementById("mySidebar").classList.add("active");
+            document.getElementById("overlay").classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeMenu() {
+            document.getElementById("mySidebar").classList.remove("active");
+            document.getElementById("overlay").classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+
+            document.getElementById('desktopLang').value = lang;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('[data-' + lang + ']').forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (element.tagName === 'SELECT' || element.tagName === 'OPTION') {
+                    element.textContent = text;
+                } else {
+                    element.textContent = text;
+                }
+            });
+
+            const subtitles = {
+                uz: "Bolalar Ro'yxati",
+                ru: "Список учеников",
+                en: "Student List"
+            };
+            document.getElementById('subtitle').textContent = subtitles[lang];
+
+            if (typeof (Storage) !== "undefined") {
+                localStorage.setItem('preferredLang', lang);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof (Storage) !== "undefined") {
+                const savedLang = localStorage.getItem('preferredLang');
+                if (savedLang) {
+                    changeLanguage(savedLang);
+                }
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+        // ===================================
+        // YOQLAMA START
+        // ====================================
+        const students = [
+            { id: 1, name: 'Sherzod Abdullayev', status: null },
+            { id: 2, name: 'Navro\'z Alisherov', status: null },
+            { id: 3, name: 'Fuzeil Arsenov', status: null },
+            { id: 4, name: 'Rahmatulloh Boymirzaev', status: null },
+            { id: 5, name: 'Davlatova Laziza', status: null },
+            { id: 6, name: 'Mirg\'olib Gofurov', status: null },
+            { id: 7, name: 'Nozanin Ismoilova', status: null },
+            { id: 8, name: 'Jamshid Isomiddinov', status: null },
+            { id: 9, name: 'Temur Jalolov', status: null },
+            { id: 10, name: 'Shohsafar Jarqinov', status: null },
+            { id: 11, name: 'Komil Komiljonov', status: null },
+            { id: 12, name: 'Azim Kamilov', status: null },
+            { id: 13, name: 'Nodirber Naimov', status: null },
+            { id: 14, name: 'Mehriniso Normuminova', status: null },
+            { id: 15, name: 'Azimjon Normurodov', status: null },
+            { id: 16, name: 'Xurshid Omonqulov', status: null },
+            { id: 17, name: 'Bexruz Qudratov', status: null },
+            { id: 18, name: 'Zulhumor Raximova', status: null },
+            { id: 19, name: 'Gulhayo Ro\'ziyeva', status: null },
+            { id: 20, name: 'Otabek Qurbonov', status: null },
+            { id: 21, name: 'Jasmina Samiyeva', status: null },
+            { id: 22, name: 'Xadicha Shavqiyeva', status: null },
+            { id: 23, name: 'Mirzohid Shermanov', status: null },
+            { id: 24, name: 'Muxlisa To\'rayiva', status: null },
+            { id: 25, name: 'Sug\'diyona To\'rayiva', status: null },
+            { id: 26, name: 'Ulug\'bek Ubaydullayiv', status: null },
+            { id: 27, name: 'Nursulton Zulfiqorov', status: null },
+            { id: 28, name: 'Shahzoda Athamova', status: null },
+            { id: 29, name: 'Sevinch Shavkatova', status: null }
+        ];
+
+        function updateDate() {
+            const now = new Date();
+            const days = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
+            const months = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentyabr', 'Oktyabr', 'Noyabr', 'Dekabr'];
+
+            const dayName = days[now.getDay()];
+            const date = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            document.getElementById('currentDate').textContent = `${dayName}, ${date} ${month} ${year}`;
+        }
+
+        function toggleAttendance(id, status) {
+            const student = students.find(s => s.id === id);
+            if (student) {
+                student.status = student.status === status ? null : status;
+                renderStudents();
+                updateStats();
+            }
+        }
+
+        function renderStudents(filterQuery = '') {
+            const listEl = document.getElementById('studentsList');
+            const filtered = students.filter(s =>
+                s.name.toLowerCase().includes(filterQuery.toLowerCase())
+            );
+
+            listEl.innerHTML = filtered.map(student => {
+                let cardClass = '';
+                if (student.status === 'present') cardClass = 'present';
+                if (student.status === 'absent') cardClass = 'absent';
+
+                return `
+                <div class="student-card ${cardClass}">
+                    <div class="student-info">
+                        <div class="student-number">${student.id}</div>
+                        <div class="student-name">${student.name}</div>
+                    </div>
+                    <div class="student-actions">
+                        <button class="btn btn-present" onclick="toggleAttendance(${student.id}, 'present')">
+                            ✓
+                        </button>
+                        <button class="btn btn-absent" onclick="toggleAttendance(${student.id}, 'absent')">
+                            ✗
+                        </button>
+                        ${student.status ? `<button class="btn btn-reset" onclick="toggleAttendance(${student.id}, null)">↺</button>` : ''}
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        function updateStats() {
+            const total = students.length;
+            const present = students.filter(s => s.status === 'present').length;
+            const absent = students.filter(s => s.status === 'absent').length;
+            const presentPercent = Math.round((present / total) * 100);
+            const absentPercent = Math.round((absent / total) * 100);
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('presentCount').textContent = present;
+            document.getElementById('absentCount').textContent = absent;
+            document.getElementById('presentPercent').textContent = `${presentPercent}%`;
+            document.getElementById('absentPercent').textContent = `${absentPercent}%`;
+
+            const absentList = document.getElementById('absentList');
+            const absentNames = document.getElementById('absentNames');
+
+            if (absent > 0) {
+                absentList.style.display = 'block';
+                const absentStudents = students.filter(s => s.status === 'absent');
+                absentNames.innerHTML = absentStudents.map((s, i) =>
+                    `<div class="list-item">${i + 1}. ${s.name}</div>`
+                ).join('');
+            } else {
+                absentList.style.display = 'none';
+            }
+        }
+
+        function markAllPresent() {
+            students.forEach(s => s.status = 'present');
+            renderStudents();
+            updateStats();
+        }
+
+        function resetAll() {
+            if (confirm('Barcha belgilarni o\'chirmoqchimisiz?')) {
+                students.forEach(s => s.status = null);
+                renderStudents();
+                updateStats();
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderStudents(e.target.value);
+        });
+
+        updateDate();
+        renderStudents();
+        updateStats();
+    </script>
+
+</body>
+
+</html>

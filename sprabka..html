@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styele.css">
+</head>
+
+<body>
+
+
+    <div class="school-header">
+        <div class="header-left">
+            <div class="school-logo">204</div>
+            <div class="school-info">
+                <h1>204 MAKTAB 10 E</h1>
+                <p>Bolalar Ro'yxati</p>
+            </div>
+        </div>
+
+        <nav class="header-nav">
+            <a href="./index.html" class="nav-link" id="link-students" data-translate="linkStudents">Sinflar</a>
+            <a href="./main.html" class="nav-link" id="link-students" data-translate="linkStudents">O'quvchilar</a>
+            <a href="./today.html" class="nav-link" id="link-today" data-translate="linkToday">Bugun</a>
+            <a href="./fanlar.html" class="nav-link" id="link-fanlar" data-translate="linkFanlar">Fanlar</a>
+            <a href="./arry.html" class="nav-link" id="link-yoqlama" data-translate="linkYoqlama">Yoqlama</a>
+            <a href="./sprabka..html" class="nav-link" id="link-fanlar" data-translate="linkFanlar">Spravka olish</a>
+        </nav>
+        <div class="header-right">
+            <select class="lang-select" id="langSelect">
+                <option value="uz">O'zbek</option>
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <button class="menu-btn" onclick="openMenu()">☰</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <div class="sidebar" id="mySidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">204 Maktab</div>
+            <button class="closebtn" onclick="closeMenu()">×</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="./index.html" class="sidebar-link">
+                <span class="link-icon">🏫</span>
+                <span data-uz="Sinflar" data-ru="Классы" data-en="Classes">Sinflar</span>
+            </a>
+            <a href="./main.html" class="sidebar-link">
+                <span class="link-icon">👥</span>
+                <span data-uz="O'quvchilar" data-ru="Ученики" data-en="Students">O'quvchilar</span>
+            </a>
+            <a href="./today.html" class="sidebar-link">
+                <span class="link-icon">📅</span>
+                <span data-uz="Bugun" data-ru="Сегодня" data-en="Today">Bugun</span>
+            </a>
+            <a href="./fanlar.html" class="sidebar-link">
+                <span class="link-icon">📚</span>
+                <span data-uz="Fanlar" data-ru="Предметы" data-en="Subjects">Fanlar</span>
+            </a>
+            <a href="./arry.html" class="sidebar-link">
+                <span class="link-icon">✓</span>
+                <span data-uz="Yo'qlama" data-ru="Перекличка" data-en="Attendance">Yo'qlama</span>
+            </a>
+            <a href="./sprabka..html" class="sidebar-link">
+                <span class="link-icon">📄</span>
+                <span data-uz="Spravka olish" data-ru="Получить справку" data-en="Get Certificate">Spravka olish</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-lang">
+            <div class="sidebar-lang-title" data-uz="Til tanlash" data-ru="Выбрать язык" data-en="Select Language">Til
+                tanlash</div>
+            <div class="lang-buttons">
+                <button class="lang-btn active" onclick="changeLanguage('uz')" data-lang="uz">O'zb</button>
+                <button class="lang-btn" onclick="changeLanguage('ru')" data-lang="ru">Рус</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">Eng</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+    <div class="form-container" id="formContainer">
+        <form id="spravkaForm">
+            <div class="form-group">
+                <label>Ism:</label>
+                <input type="text" id="ism" placeholder="O'quvchining ismini kiriting" required>
+            </div>
+
+            <div class="form-group">
+                <label>Familiya:</label>
+                <input type="text" id="familiya" placeholder="O'quvchining familiyasini kiriting" required>
+            </div>
+
+            <div class="form-group">
+                <label>Sinf:</label>
+                <select id="sinf" required>
+                    <option value="">Sinfni tanlang</option>
+                    <option value="1">1-sinf</option>
+                    <option value="2">2-sinf</option>
+                    <option value="3">3-sinf</option>
+                    <option value="4">4-sinf</option>
+                    <option value="5">5-sinf</option>
+                    <option value="6">6-sinf</option>
+                    <option value="7">7-sinf</option>
+                    <option value="8">8-sinf</option>
+                    <option value="9">9-sinf</option>
+                    <option value="10">10-sinf</option>
+                    <option value="11">11-sinf</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Sinf harfi:</label>
+                <div class="class-letter-group">
+                    <button type="button" class="class-letter-btn" data-letter="A">A</button>
+                    <button type="button" class="class-letter-btn" data-letter="B">B</button>
+                    <button type="button" class="class-letter-btn" data-letter="D">D</button>
+                    <button type="button" class="class-letter-btn" data-letter="G">G</button>
+                    <button type="button" class="class-letter-btn" data-letter="E">E</button>
+                </div>
+                <input type="hidden" id="sinfHarfi" required>
+            </div>
+
+            <div class="form-group">
+                <label>Muddat (qachondan - qachongacha):</label>
+                <div class="date-group">
+                    <div>
+                        <input type="date" id="boshlanishSana" required>
+                        <small style="color: #666; display: block; margin-top: 5px;">Boshlanish sanasi</small>
+                    </div>
+                    <div>
+                        <input type="date" id="tugashSana" required>
+                        <small style="color: #666; display: block; margin-top: 5px;">Tugash sanasi</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Otasining ismi va familiyasi:</label>
+                <input type="text" id="otaIsm" placeholder="Otasining to'liq ismi va familiyasi" required>
+            </div>
+
+            <div class="form-group">
+                <label>Onasining ismi va familiyasi:</label>
+                <input type="text" id="onaIsm" placeholder="Onasining to'liq ismi va familiyasi" required>
+            </div>
+
+            <div class="form-group">
+                <label>Sinf rahbarining ismi va familiyasi:</label>
+                <input type="text" id="rahbarIsm" placeholder="Sinf rahbarining to'liq ismi va familiyasi" required>
+            </div>
+
+            <div class="form-group">
+                <label>Spravka olish sababi:</label>
+                <select id="sabab" required>
+                    <option value="">Sababni tanlang</option>
+                    <option value="Oilaviy muammo">Oilaviy muammo</option>
+                    <option value="Shaxsiy sabab">Shaxsiy sabab</option>
+                    <option value="Boshqa">Boshqa</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Qo'shimcha ma'lumot:</label>
+                <textarea id="qoshimcha" placeholder="Agar kerak bo'lsa qo'shimcha ma'lumot kiriting..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Keyingisi →</button>
+        </form>
+    </div>
+
+    <div class="result" id="result">
+        <div class="success-message" id="successMessage">
+            ✓ Spravka muvaffaqiyatli tasdiqlandi!
+        </div>
+
+        <div class="result-header">
+            <h2>204 MAKTAB 10 E</h2>
+            <p>MA'LUMOTNOMA</p>
+        </div>
+        <div class="result-content" id="resultContent"></div>
+
+        <div class="button-group">
+            <button class="pdf-btn" onclick="downloadPDF()" id="pdfBtn">
+                <span>📄</span> PDF Yuklab Olish
+            </button>
+            <button class="confirm-btn" onclick="confirmSpravka()" id="confirmBtn">
+                <span>✓</span> Tasdiqlash
+            </button>
+        </div>
+        <button class="back-btn" onclick="goBack()" style="margin-top: 15px; width: 100%;">← Orqaga Qaytish</button>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // ===================================
+        // DROB DOWN 
+        // ====================================
+        let currentLang = 'uz';
+
+        function openMenu() {
+            document.getElementById("mySidebar").classList.add("active");
+            document.getElementById("overlay").classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeMenu() {
+            document.getElementById("mySidebar").classList.remove("active");
+            document.getElementById("overlay").classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+
+            document.getElementById('desktopLang').value = lang;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('[data-' + lang + ']').forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (element.tagName === 'SELECT' || element.tagName === 'OPTION') {
+                    element.textContent = text;
+                } else {
+                    element.textContent = text;
+                }
+            });
+
+            const subtitles = {
+                uz: "Bolalar Ro'yxati",
+                ru: "Список учеников",
+                en: "Student List"
+            };
+            document.getElementById('subtitle').textContent = subtitles[lang];
+
+            if (typeof (Storage) !== "undefined") {
+                localStorage.setItem('preferredLang', lang);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof (Storage) !== "undefined") {
+                const savedLang = localStorage.getItem('preferredLang');
+                if (savedLang) {
+                    changeLanguage(savedLang);
+                }
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+        // ===================================
+        // SPRABKA START
+        // ====================================
+        let formData = {};
+
+        const classLetterBtns = document.querySelectorAll('.class-letter-btn');
+        const sinfHarfiInput = document.getElementById('sinfHarfi');
+
+        classLetterBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                classLetterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                sinfHarfiInput.value = this.dataset.letter;
+            });
+        });
+
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('boshlanishSana').setAttribute('min', today);
+        document.getElementById('tugashSana').setAttribute('min', today);
+
+        document.getElementById('boshlanishSana').addEventListener('change', function () {
+            document.getElementById('tugashSana').setAttribute('min', this.value);
+        });
+
+        document.getElementById('spravkaForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (!sinfHarfiInput.value) {
+                alert('Iltimos, sinf harfini tanlang!');
+                return;
+            }
+
+            const boshlanishSana = new Date(document.getElementById('boshlanishSana').value);
+            const tugashSana = new Date(document.getElementById('tugashSana').value);
+
+            if (tugashSana < boshlanishSana) {
+                alert('Tugash sanasi boshlanish sanasidan katta bo\'lishi kerak!');
+                return;
+            }
+
+            formData = {
+                ism: document.getElementById('ism').value,
+                familiya: document.getElementById('familiya').value,
+                sinf: document.getElementById('sinf').value,
+                sinfHarfi: sinfHarfiInput.value,
+                boshlanishSana: document.getElementById('boshlanishSana').value,
+                tugashSana: document.getElementById('tugashSana').value,
+                otaIsm: document.getElementById('otaIsm').value,
+                onaIsm: document.getElementById('onaIsm').value,
+                rahbarIsm: document.getElementById('rahbarIsm').value,
+                sabab: document.getElementById('sabab').value,
+                qoshimcha: document.getElementById('qoshimcha').value
+            };
+
+            displayResult();
+        });
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('uz-UZ', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        function displayResult() {
+            const today = new Date();
+            const sana = today.toLocaleDateString('uz-UZ', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+
+            let resultHTML = `
+        <div class="result-row">
+            <div class="result-label">Berilgan sana:</div>
+            <div class="result-value">${sana}</div>
+        </div>
+        <div class="result-row">
+            <div class="result-label">O'quvchi:</div>
+            <div class="result-value">${formData.ism} ${formData.familiya}</div>
+        </div>
+        <div class="result-row">
+            <div class="result-label">Sinfi:</div>
+            <div class="result-value">${formData.sinf}-${formData.sinfHarfi}</div>
+        </div>
+        <div class="result-row">
+            <div class="result-label">Muddat:</div>
+            <div class="result-value">${formatDate(formData.boshlanishSana)} dan ${formatDate(formData.tugashSana)} gacha</div>
+        </div>
+        <div class="result-row">
+            <div class="result-label">Otasi:</div>
+            <div class="result-value">${formData.otaIsm}</div>
+        </div>
+        <div class="result-row">
+            <div class="result-label">Onasi:</div>
+            <div class="result-value">${formData.onaIsm}</div>
+        </div>
+        <div class="result-row">
+            <div class="result-label">Sinf rahbari:</div>
+            <div class="result-value">${formData.rahbarIsm}</div>
+        </div>
+        <div class="result-row">
+            <div class="result-label">Sabab:</div>
+            <div class="result-value">${formData.sabab}</div>
+        </div>
+    `;
+
+            if (formData.qoshimcha) {
+                resultHTML += `
+            <div class="result-row">
+                <div class="result-label">Qo'shimcha ma'lumot:</div>
+                <div class="result-value">${formData.qoshimcha}</div>
+            </div>
+        `;
+            }
+
+            document.getElementById('resultContent').innerHTML = resultHTML;
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('result').classList.add('show');
+            document.getElementById('successMessage').classList.remove('show');
+
+            document.querySelector('.back-btn').style.display = 'none';
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const today = new Date();
+            const sana = today.toLocaleDateString('uz-UZ', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+
+            doc.setFontSize(18);
+            doc.setFont(undefined, 'bold');
+            doc.text('204 MAKTAB 10 E', 105, 20, { align: 'center' });
+
+            doc.setFontSize(14);
+            doc.text("MA'LUMOTNOMA", 105, 30, { align: 'center' });
+
+            doc.setLineWidth(0.5);
+            doc.line(20, 35, 190, 35);
+
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+
+            let y = 50;
+            const lineHeight = 10;
+
+            doc.text(`Berilgan sana: ${sana}`, 20, y);
+            y += lineHeight;
+
+            doc.text(`O'quvchi: ${formData.ism} ${formData.familiya}`, 20, y);
+            y += lineHeight;
+
+            doc.text(`Sinfi: ${formData.sinf}-${formData.sinfHarfi}`, 20, y);
+            y += lineHeight;
+
+            doc.text(`Muddat: ${formatDate(formData.boshlanishSana)} dan ${formatDate(formData.tugashSana)} gacha`, 20, y);
+            y += lineHeight;
+
+            doc.text(`Otasi: ${formData.otaIsm}`, 20, y);
+            y += lineHeight;
+
+            doc.text(`Onasi: ${formData.onaIsm}`, 20, y);
+            y += lineHeight;
+
+            doc.text(`Sinf rahbari: ${formData.rahbarIsm}`, 20, y);
+            y += lineHeight;
+
+            doc.text(`Sabab: ${formData.sabab}`, 20, y);
+            y += lineHeight;
+
+            if (formData.qoshimcha) {
+                y += 5;
+                doc.text(`Qo'shimcha ma'lumot:`, 20, y);
+                y += lineHeight;
+                const lines = doc.splitTextToSize(formData.qoshimcha, 170);
+                doc.text(lines, 20, y);
+            }
+
+            doc.setFontSize(10);
+            doc.text('____________________', 20, 260);
+            doc.text('Sinf rahbari imzosi', 20, 270);
+
+            doc.text('____________________', 120, 260);
+            doc.text('Maktab direktori', 120, 270);
+
+            doc.save(`Spravka_${formData.ism}_${formData.familiya}.pdf`);
+        }
+
+        function confirmSpravka() {
+            document.getElementById('successMessage').classList.add('show');
+            document.getElementById('confirmBtn').disabled = true;
+            document.getElementById('confirmBtn').style.opacity = '0.6';
+            document.getElementById('confirmBtn').innerHTML = '<span>✓</span> Tasdiqlandi';
+        }
+    </script>
+
+
+
+
+
+</body>
+
+</html>
